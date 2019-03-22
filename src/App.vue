@@ -1,19 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Dropdown />
+    <RegistrationTable />
+    <button id="registerButton" v-on:click="deliverData()">Registrer</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+var value = 0;
+
+import Dropdown from './components/Dropdown.vue'
+import RegistrationTable from './components/RegistrationTable.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Dropdown,
+    RegistrationTable
+  },
+  methods: {
+    deliverData(){
+      value++;
+      alert('Funksjonen er kalt, value er: ' + value)
+    }
   }
 }
+
 </script>
 
 <style>
