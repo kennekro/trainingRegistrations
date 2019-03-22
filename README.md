@@ -14,8 +14,8 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-This command needs to be run before pushing the changes to origin/master in order to update the /dist folder used by Azure.
 ```
+The build command needs to be run before pushing the changes to origin/master in order to update the /dist folder used by Azure.
 
 ### Hosting in Azure
 1. Create a web application
