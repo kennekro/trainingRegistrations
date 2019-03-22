@@ -10,6 +10,7 @@
 
 import Dropdown from './components/Dropdown.vue'
 import RegistrationTable from './components/RegistrationTable.vue'
+import azure from 'azure-storage'
 
 export default {
   name: 'app',

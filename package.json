@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "azure-storage": "^2.10.2",
     "jshint": "^2.10.2",
     "vue": "^2.6.6",
     "vue-dropdowns": "^1.0.6"
