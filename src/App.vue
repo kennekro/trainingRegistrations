@@ -1,27 +1,31 @@
 <template>
   <div id="app">
-    <Dropdown />
-    <RegistrationTable />
+    <Dropdown v-on:exerciseSelected="value => this.dropdownValue = value" />
+    <RegistrationTable v-on:setsChanged="value => this.setArray = value" />
     <button id="registerButton" v-on:click="deliverData()">Registrer</button>
   </div>
 </template>
 
 <script>
-var value = 0;
 
 import Dropdown from './components/Dropdown.vue'
 import RegistrationTable from './components/RegistrationTable.vue'
 
 export default {
   name: 'app',
+  data(){
+    return{
+      dropdownValue: '',
+      setArray: [0,0,0]
+    }
+  },
   components: {
     Dropdown,
     RegistrationTable
   },
   methods: {
     deliverData(){
-      value++;
-      alert('Funksjonen er kalt, value er: ' + value)
+      alert('Funksjonen er kalt, value er: ' + this.setArray)
     }
   }
 }

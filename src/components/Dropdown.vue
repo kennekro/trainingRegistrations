@@ -10,28 +10,29 @@
 import dropdown from 'vue-dropdowns';
  
 export default {
-        data() {
-          return {
-            arrayOfObjects: [
-              {
-                name: "First option"
-              },
-              {
-                name: "Second option"
-              }
-            ],
-            object: {
-              name: 'Select exercise',
-            }
-          }
+  data() {
+    return {
+      arrayOfObjects: [
+        {
+          name: 'First option'
         },
-        components: {
-            'dropdown': dropdown,
-        },
-        methods: {
-          methodToRunOnSelect(payload) {
-            this.object = payload;
-          }
+        {
+          name: 'Second option'
         }
+      ],
+      object: {
+        name: 'Select exercise',
       }
+    }
+  },
+  components: {
+      'dropdown': dropdown,
+  },
+  methods: {
+    methodToRunOnSelect(payload) {
+      this.object = payload;
+      this.$emit('exerciseSelected', payload.name)
+    }
+  }
+}
 </script> 

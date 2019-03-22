@@ -7,23 +7,45 @@
     </tr>
     <tr>
       <td >
-          <input type="text" id="firstSet">kg
+          <input v-model="firstSetValue" v-on:change="firstSetValueChanged(firstSetValue)" >kg
+          <p>Value is: {{firstSetValue}} </p>
       </td>
       <td >
-          <input type="text" id="secondSet">kg
+          <input v-model="secondSetValue" v-on:change="secondSetValueChanged(secondSetValue)" >kg
+          <p>Value is: {{secondSetValue}} </p>
       </td>
       <td >
-          <input type="text" id="thirdSet">kg
+          <input v-model="thirdSetValue" v-on:change="thirdSetValueChanged(thirdSetValue)" >kg
+          <p>Value is: {{thirdSetValue}} </p>
       </td>
     </tr>
   </table>
 </template>
 
 <script>
+var setValues = [0,0,0];
 export default {
   name: 'app',
+  data() {
+    return {
+      firstSetValue: '',
+      secondSetValue: '',
+      thirdSetValue: ''
+    }
+  },
   methods: {
-    
+    firstSetValueChanged(payload) {
+      setValues[0] = payload;
+      this.$emit('setsChanged', setValues)
+    },
+    secondSetValueChanged(payload) {
+      setValues[1] = payload;
+      this.$emit('setsChanged', setValues)
+    },
+    thirdSetValueChanged(payload) {
+      setValues[2] = payload;
+      this.$emit('setsChanged', setValues)
+    }
   }
 }
 </script>
