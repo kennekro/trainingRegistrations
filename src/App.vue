@@ -7,10 +7,9 @@
 </template>
 
 <script>
-
 import Dropdown from './components/Dropdown.vue'
 import RegistrationTable from './components/RegistrationTable.vue'
-import azure from 'azure-storage'
+//import azure from 'azure-storage'
 
 export default {
   name: 'app',
@@ -26,7 +25,27 @@ export default {
   },
   methods: {
     deliverData(){
-      alert('Funksjonen er kalt, value er: ' + this.setArray)
+      //var firstSet = this.setArray[0].toString();
+      //var secondSet = this.setArray[1].toString();
+
+      var azure = require('azure-storage'); 
+      var tableService = azure.createTableService();
+      var entGen = azure.TableUtilities.entityGenerator;
+      var entity = {
+        PartitionKey: entGen.String('Test'),
+        RowKey: entGen.String('1'),
+        description: entGen.String('Test1')
+      };
+
+      tableService.insertEntity('registrations', entity, function(error, result, response) {
+        if (!error) {
+          console.log('Verdi satt inn: ' + result)
+        }
+        else {
+          console.log('Error: ' + error.toString());
+        }
+      });
+      console.log("Button pressed");
     }
   }
 }
