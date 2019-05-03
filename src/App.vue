@@ -14,9 +14,6 @@ import Dropdown from './components/Dropdown.vue'
 import RegistrationTable from './components/RegistrationTable.vue'
 const fb = require('../firebaseConfig.js')
 
-var date = moment().format('YYYY-MM-DD_HH-mm')
-console.log(date)
-
 export default {
   name: 'app',
   data(){
