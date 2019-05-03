@@ -9,17 +9,23 @@
   },
   "dependencies": {
     "azure-storage": "^2.10.2",
+    "crypto-js": "^3.1.9-1",
+    "dotenv": "^7.0.0",
+    "firebase": "^5.11.1",
     "jshint": "^2.10.2",
+    "moment": "^2.24.0",
     "vue": "^2.6.6",
     "vue-dropdowns": "^1.0.6"
   },
   "devDependencies": {
+    "@types/dotenv": "^6.1.0",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "typescript": "^3.3.4000",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {

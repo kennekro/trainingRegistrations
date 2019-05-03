@@ -8,6 +8,27 @@
     <title>Treningsregistrering</title>
   </head>
   <body>
+    <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase.js"></script>
+    <script>
+      const firebase = require("firebase");
+      require("firebase/firestore");
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDSfDnq9bw3GjFybbLq3sDCM8FivFhcPPg",
+        authDomain: "first-test-b9dd9.firebaseapp.com",
+        databaseURL: "https://first-test-b9dd9.firebaseio.com",
+        projectId: "first-test-b9dd9",
+        storageBucket: "first-test-b9dd9.appspot.com",
+        messagingSenderId: "354898769883"
+      };
+      firebase.initializeApp(config);
+
+      const db = firebase.firestore();
+
+      const families = db.collection('families');
+      const cities = db.collection('cities');
+
+    </script>
     <noscript>
       <strong>We're sorry but training-registration doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>

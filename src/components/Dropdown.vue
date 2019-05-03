@@ -1,25 +1,30 @@
 <template>
   <dropdown :options="arrayOfObjects" 
-          :selected="object" 
-          v-on:updateOption="methodToRunOnSelect" 
-          :placeholder="'Select an Item'">
+    :selected="object" 
+    v-on:updateOption="methodToRunOnSelect" 
+    :placeholder="'Select an Item'">
   </dropdown>
+  <!--select id="exercise-selector"></select>-->
 </template>
 
 <script>
 import dropdown from 'vue-dropdowns';
- 
+const fb = require('../../firebaseConfig.js')
+
+var fbArray = []
+fb.exerciseCollection.where('active', '==', true).get().then(function(querySnapshot) {
+  querySnapshot.forEach(function(doc) {
+    fbArray.push({name: doc.data().name, repetitions: doc.data().exerciseRepetitions})
+  });
+})
+.catch(function(error) {
+  console.error("Error getting documents: ", error);
+});
+
 export default {
   data() {
     return {
-      arrayOfObjects: [
-        {
-          name: 'First option'
-        },
-        {
-          name: 'Second option'
-        }
-      ],
+      arrayOfObjects: fbArray,
       object: {
         name: 'Select exercise',
       }

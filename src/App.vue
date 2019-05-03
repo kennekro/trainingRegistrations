@@ -2,14 +2,20 @@
   <div id="app">
     <Dropdown v-on:exerciseSelected="value => this.dropdownValue = value" />
     <RegistrationTable v-on:setsChanged="value => this.setArray = value" />
-    <button id="registerButton" v-on:click="deliverData()">Registrer</button>
+    <button id="registerButton" v-on:click="addRegistration()">Registrer</button>
   </div>
 </template>
 
+
 <script>
+import moment from 'moment'
+//import firebase from 'firebase'
 import Dropdown from './components/Dropdown.vue'
 import RegistrationTable from './components/RegistrationTable.vue'
-//import azure from 'azure-storage'
+const fb = require('../firebaseConfig.js')
+
+var date = moment().format('YYYY-MM-DD_HH-mm')
+console.log(date)
 
 export default {
   name: 'app',
@@ -24,28 +30,18 @@ export default {
     RegistrationTable
   },
   methods: {
-    deliverData(){
-      //var firstSet = this.setArray[0].toString();
-      //var secondSet = this.setArray[1].toString();
-
-      var azure = require('azure-storage'); 
-      var tableService = azure.createTableService();
-      var entGen = azure.TableUtilities.entityGenerator;
-      var entity = {
-        PartitionKey: entGen.String('Test'),
-        RowKey: entGen.String('1'),
-        description: entGen.String('Test1')
-      };
-
-      tableService.insertEntity('registrations', entity, function(error, result, response) {
-        if (!error) {
-          console.log('Verdi satt inn: ' + result)
-        }
-        else {
-          console.log('Error: ' + error.toString());
-        }
-      });
-      console.log("Button pressed");
+    deliverData(){      
+      console.info(this.dropdownValue);
+      console.info(this.setArray);
+    },
+    addRegistration() {
+      var date = moment().format('YYYY-MM-DD_HH-mm')
+      fb.registrationCollection.doc(date).set({
+        exercise: this.dropdownValue,
+        weightSet: this.setArray
+      })
+      .then(() => console.log('Document successfully written!'))
+      .catch(() => console.error('Error writing document', error));
     }
   }
 }
