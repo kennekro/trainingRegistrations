@@ -1,5 +1,5 @@
 # training-registration
-A simple Vue application for registering my workout routine. The goal here is to create a simple frontend hosted as an Azure web application, where the data is sent to some kind of storage. 
+A simple Vue application for registering my workout routine. The goal here is to create a simple frontend hosted as an Azure web application, where the data is stored in Firebase. 
 
 ## Project setup
 ```
