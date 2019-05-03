@@ -2,14 +2,17 @@
   <div id="app">
     <Dropdown v-on:exerciseSelected="value => this.dropdownValue = value" />
     <RegistrationTable v-on:setsChanged="value => this.setArray = value" />
-    <button id="registerButton" v-on:click="deliverData()">Registrer</button>
+    <button id="registerButton" v-on:click="addRegistration()">Registrer</button>
   </div>
 </template>
 
-<script>
 
+<script>
+import moment from 'moment'
+//import firebase from 'firebase'
 import Dropdown from './components/Dropdown.vue'
 import RegistrationTable from './components/RegistrationTable.vue'
+const fb = require('../firebaseConfig.js')
 
 export default {
   name: 'app',
@@ -24,8 +27,18 @@ export default {
     RegistrationTable
   },
   methods: {
-    deliverData(){
-      alert('Funksjonen er kalt, value er: ' + this.setArray)
+    deliverData(){      
+      console.info(this.dropdownValue);
+      console.info(this.setArray);
+    },
+    addRegistration() {
+      var date = moment().format('YYYY-MM-DD_HH-mm')
+      fb.registrationCollection.doc(date).set({
+        exercise: this.dropdownValue,
+        weightSet: this.setArray
+      })
+      .then(() => console.log('Document successfully written!'))
+      .catch(() => console.error('Error writing document', error));
     }
   }
 }
